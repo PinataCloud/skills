@@ -29,6 +29,8 @@ Each method returns a builder; `await` it to send. Builder options can be chaine
 | `.vectorize()` | Vectorize for semantic search (file must be in a group) |
 | `.waitForCid(false)` | Uploads over 90 MiB: return once the bytes are stored, before the CID is registered |
 
+Options with no builder method go in the second argument: `file(f, { expires_at })` sets the time (Unix seconds, in the future) when the file is deleted. There is no `.expires()` method.
+
 | Method | Uploads |
 |---|---|
 | `file(file)` | One `File`. Over 90 MiB it switches to resumable uploads automatically |

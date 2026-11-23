@@ -64,6 +64,9 @@ const upload = await pinata.upload.public.file(file).name("hello.txt").keyvalues
 
 const json = await pinata.upload.private.json({ title: "Report" }).name("report.json");
 
+// Expire (auto-delete) at a Unix time in seconds
+const temp = await pinata.upload.private.file(file, { expires_at: Math.floor(Date.now() / 1000) + 86_400 });
+
 // One CID for many files; each File's webkitRelativePath (or name) is its path
 const folder = await pinata.upload.public.folder(files);
 ```
