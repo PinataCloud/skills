@@ -1,0 +1,41 @@
+name: Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  skills:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check frontmatter
+        run: |
+          status=0
+          for file in skills/*/SKILL.md; do
+            dir=$(basename "$(dirname "$file")")
+            name=$(sed -n '2,/^---$/p' "$file" | sed -n 's/^name: *//p')
+            description=$(sed -n '2,/^---$/p' "$file" | sed -n 's/^description: *//p')
+            if [ "$name" != "$dir" ]; then echo "::error file=$file::name '$name' must match its folder '$dir'"; status=1; fi
+            if [ -z "$description" ]; then echo "::error file=$file::description is required"; status=1; fi
+            if [ "${#description}" -gt 1024 ]; then echo "::error file=$file::description is over 1024 characters"; status=1; fi
+          done
+          exit $status
+      - name: Check links to references
+        run: |
+          status=0
+          for file in skills/*/SKILL.md; do
+            dir=$(dirname "$file")
+            for ref in $(grep -oE '\]\((references/[^)]+)\)' "$file" | sed -E 's/\]\((.*)\)/\1/'); do
+              [ -f "$dir/$ref" ] || { echo "::error file=$file::missing $ref"; status=1; }
+            done
+          done
+          exit $status
+      - name: Discover skills
+        env:
+          DISABLE_TELEMETRY: "1"
+        run: npx -y skills@1.9.0 add ./ --list
