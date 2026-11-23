@@ -39,3 +39,10 @@ jobs:
         env:
           DISABLE_TELEMETRY: "1"
         run: npx -y skills@1.9.0 add ./ --list
+      - name: Compare with the copy served from docs.pinata.cloud
+        if: github.ref == 'refs/heads/main'
+        run: |
+          served=$(curl -fsS https://docs.pinata.cloud/.well-known/skills/pinata/SKILL.md | sed 's#https://raw.githubusercontent.com/PinataCloud/skills/main/skills/pinata/##g')
+          if ! diff <(printf '%s\n' "$served") skills/pinata/SKILL.md > /dev/null; then
+            echo "::warning file=skills/pinata/SKILL.md::differs from the copy served from docs.pinata.cloud; update .mintlify/skills/pinata/SKILL.md in PinataCloud/docs"
+          fi

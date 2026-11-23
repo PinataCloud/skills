@@ -22,6 +22,8 @@ The agent loads a skill when a task matches its description. You can also ask fo
 
 Each skill is a folder under `skills/` with a `SKILL.md` (YAML frontmatter with `name` and `description`, then instructions) and optional `references/` the agent reads when it needs more detail. Keep `SKILL.md` short and link to [docs.pinata.cloud](https://docs.pinata.cloud) for the full reference.
 
+The `pinata` skill is also served from [docs.pinata.cloud](https://docs.pinata.cloud/.well-known/agent-skills/index.json), so `npx skills add https://docs.pinata.cloud` installs the same skill. That copy lives in [PinataCloud/docs](https://github.com/PinataCloud/docs) at `.mintlify/skills/pinata/SKILL.md`. It's identical except that its `references/` links point to the raw files here, because the docs site serves only `SKILL.md`. Update it whenever `skills/pinata/SKILL.md` changes; CI warns when the two differ.
+
 Test a change locally before opening a pull request:
 
 ```bash
