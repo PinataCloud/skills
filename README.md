@@ -10,15 +10,37 @@ npx skills add PinataCloud/skills
 
 This works with Claude Code, Codex, Cursor, OpenCode and [other agents](https://github.com/vercel-labs/skills#supported-agents). Add `-g` to install for every project, or pick the agent with `-a claude-code`. More in the [Pinata docs](https://docs.pinata.cloud/tools/skills).
 
-### Claude Code plugin
+### Plugins
 
-The plugin bundles the `pinata` skill with the [Pinata MCP server](https://mcp.pinata.cloud), so Claude can upload, share and manage files on your account:
+The plugins bundle the `pinata` skill with the [Pinata MCP server](https://mcp.pinata.cloud), so the agent can upload, share and manage files on your account. Each one needs a [Pinata API key](https://app.pinata.cloud/developers/api-keys) (JWT).
+
+**Claude Code** asks for the key when the plugin is enabled and keeps it in your system keychain:
 
 ```bash
 claude plugin install pinata --marketplace PinataCloud/skills
 ```
 
-Or from inside a session: `/plugin install pinata --marketplace PinataCloud/skills`. Claude Code asks for a [Pinata API key](https://app.pinata.cloud/developers/api-keys) (JWT) when the plugin is enabled and keeps it in your system keychain. Update with `claude plugin update pinata@pinata`.
+Or from inside a session: `/plugin install pinata --marketplace PinataCloud/skills`. Update with `claude plugin update pinata@pinata`.
+
+**Codex** reads the key from `PINATA_JWT`, which must be exported before Codex starts. Without it the Pinata tools don't load:
+
+```bash
+codex plugin marketplace add PinataCloud/skills
+codex plugin add pinata@pinata
+export PINATA_JWT=<your JWT>
+```
+
+Update with `codex plugin marketplace upgrade pinata`.
+
+**Gemini CLI** asks for the key on install and keeps it in your system keychain:
+
+```bash
+gemini extensions install https://github.com/PinataCloud/skills
+```
+
+Change it with `gemini extensions config pinata PINATA_JWT`, update with `gemini extensions update pinata`.
+
+Other agents: install the skill with `npx skills add PinataCloud/skills` and add the MCP server by hand, as in the [MCP server docs](https://docs.pinata.cloud/tools/mcp).
 
 ## Skills
 

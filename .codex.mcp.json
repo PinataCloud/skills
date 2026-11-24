@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "pinata": {
+      "type": "http",
+      "url": "https://mcp.pinata.cloud",
+      "bearer_token_env_var": "PINATA_JWT"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "pinata",
+  "version": "1.0.0",
+  "description": "Upload, share and manage files on Pinata: the Pinata MCP server plus the pinata skill",
+  "mcpServers": {
+    "pinata": {
+      "httpUrl": "https://mcp.pinata.cloud",
+      "headers": { "Authorization": "Bearer ${PINATA_JWT}" }
+    }
+  },
+  "settings": [
+    {
+      "name": "Pinata API key (JWT)",
+      "description": "Create one at https://app.pinata.cloud/developers/api-keys",
+      "envVar": "PINATA_JWT",
+      "sensitive": true
+    }
+  ]
+}

@@ -39,6 +39,11 @@ jobs:
         env:
           DISABLE_TELEMETRY: "1"
         run: npx -y skills@1.9.0 add ./ --list
+      - name: Check plugin manifests are valid JSON
+        run: |
+          for f in .claude-plugin/plugin.json .claude-plugin/marketplace.json .mcp.json .codex-plugin/plugin.json .codex.mcp.json .agents/plugins/marketplace.json gemini-extension.json; do
+            jq empty "$f" || { echo "::error file=$f::invalid JSON"; exit 1; }
+          done
       - name: Validate the Claude Code plugin
         env:
           DISABLE_TELEMETRY: "1"

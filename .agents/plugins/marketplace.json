@@ -1,0 +1,12 @@
+{
+  "name": "pinata",
+  "interface": { "displayName": "Pinata" },
+  "plugins": [
+    {
+      "name": "pinata",
+      "source": { "source": "local", "path": "./" },
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
+      "category": "Productivity"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "name": "pinata",
+  "description": "Upload, share and manage files on Pinata: the Pinata MCP server plus the pinata skill",
+  "author": {
+    "name": "Pinata",
+    "url": "https://pinata.cloud"
+  },
+  "homepage": "https://docs.pinata.cloud/tools/skills",
+  "repository": "https://github.com/PinataCloud/skills",
+  "license": "MIT",
+  "keywords": [
+    "pinata",
+    "ipfs",
+    "storage",
+    "files",
+    "mcp"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.codex.mcp.json",
+  "interface": {
+    "displayName": "Pinata",
+    "shortDescription": "Upload, share and manage files on IPFS",
+    "longDescription": "Upload files and folders to Pinata, organize them into groups, and share them through public or expiring private links, from your agent.",
+    "developerName": "Pinata",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "websiteURL": "https://pinata.cloud",
+    "privacyPolicyURL": "https://pinata.cloud/terms#privacy-policy",
+    "termsOfServiceURL": "https://pinata.cloud/terms",
+    "defaultPrompt": [
+      "Upload ./dist to Pinata and give me a public link",
+      "List my most recent private files on Pinata",
+      "Create a Pinata group and add my latest uploads"
+    ],
+    "brandColor": "#6D3AFF"
+  }
+}
