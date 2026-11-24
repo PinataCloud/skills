@@ -39,6 +39,10 @@ jobs:
         env:
           DISABLE_TELEMETRY: "1"
         run: npx -y skills@1.9.0 add ./ --list
+      - name: Validate the Claude Code plugin
+        env:
+          DISABLE_TELEMETRY: "1"
+        run: npx -y @anthropic-ai/claude-code@2.1.330 plugin validate .
       - name: Compare with the copy served from docs.pinata.cloud
         if: github.ref == 'refs/heads/main'
         run: |

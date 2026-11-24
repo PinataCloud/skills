@@ -1,0 +1,15 @@
+{
+  "name": "pinata",
+  "description": "Pinata plugins for Claude Code",
+  "owner": {
+    "name": "Pinata",
+    "url": "https://pinata.cloud"
+  },
+  "plugins": [
+    {
+      "name": "pinata",
+      "source": "./",
+      "description": "Upload, share and manage files on Pinata from Claude Code"
+    }
+  ]
+}

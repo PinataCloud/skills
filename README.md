@@ -10,6 +10,16 @@ npx skills add PinataCloud/skills
 
 This works with Claude Code, Codex, Cursor, OpenCode and [other agents](https://github.com/vercel-labs/skills#supported-agents). Add `-g` to install for every project, or pick the agent with `-a claude-code`. More in the [Pinata docs](https://docs.pinata.cloud/tools/skills).
 
+### Claude Code plugin
+
+The plugin bundles the `pinata` skill with the [Pinata MCP server](https://mcp.pinata.cloud), so Claude can upload, share and manage files on your account:
+
+```bash
+claude plugin install pinata --marketplace PinataCloud/skills
+```
+
+Or from inside a session: `/plugin install pinata --marketplace PinataCloud/skills`. Claude Code asks for a [Pinata API key](https://app.pinata.cloud/developers/api-keys) (JWT) when the plugin is enabled and keeps it in your system keychain. Update with `claude plugin update pinata@pinata`.
+
 ## Skills
 
 | Skill | Use it for |
@@ -28,6 +38,8 @@ Test a change locally before opening a pull request:
 
 ```bash
 npx skills add ./ --list
+claude plugin validate .
+claude --plugin-dir .
 ```
 
 ## License
