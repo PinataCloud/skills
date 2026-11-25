@@ -12,15 +12,19 @@ This works with Claude Code, Codex, Cursor, OpenCode and [other agents](https://
 
 ### Plugins
 
-The plugins bundle the `pinata` skill with the [Pinata MCP server](https://mcp.pinata.cloud), so the agent can upload, share and manage files on your account. Each one needs a [Pinata API key](https://app.pinata.cloud/developers/api-keys) (JWT).
+The plugins bundle the `pinata` skill with the [Pinata MCP server](https://mcp.pinata.cloud), so the agent can upload, share and manage files on your account.
 
-**Claude Code** asks for the key when the plugin is enabled and keeps it in your system keychain:
+**Claude** (Claude Code, claude.ai and Cowork) signs in with your Pinata account: the first time a Pinata tool runs, Claude opens Pinata's sign-in page, you choose the workspace to connect, and no API key is needed. Install it in Claude Code with:
 
 ```bash
 claude plugin install pinata --marketplace PinataCloud/skills
 ```
 
-Or from inside a session: `/plugin install pinata --marketplace PinataCloud/skills`. Update with `claude plugin update pinata@pinata`.
+Or from inside a session: `/plugin install pinata --marketplace PinataCloud/skills`. Update with `claude plugin update pinata@pinata`. Sign-in creates a Pinata API key named `MCP OAuth · <client>` on that workspace, with your role's rights to files, groups and vectors, read-only gateways and analytics, and never admin or billing; revoke it in [API Keys](https://app.pinata.cloud/developers/api-keys) to disconnect.
+
+What the Claude plugin runs: the `pinata` skill (instructions only) and one remote MCP server, `https://mcp.pinata.cloud`, operated by Pinata. It sends your requests only there and starts no local process.
+
+**Codex** and **Gemini CLI** need a [Pinata API key](https://app.pinata.cloud/developers/api-keys) (JWT).
 
 **Codex** reads the key from `PINATA_JWT`, which must be exported before Codex starts. Without it the Pinata tools don't load:
 
