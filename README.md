@@ -22,7 +22,12 @@ claude plugin install pinata --marketplace PinataCloud/skills
 
 Or from inside a session: `/plugin install pinata --marketplace PinataCloud/skills`. Update with `claude plugin update pinata@pinata`. Sign-in creates a Pinata API key named `MCP OAuth · <client>` on that workspace, with your role's rights to files, groups and vectors, read-only gateways and analytics, and never admin or billing; revoke it in [API Keys](https://app.pinata.cloud/developers/api-keys) to disconnect.
 
-What the Claude plugin runs: the `pinata` skill (instructions only) and one remote MCP server, `https://mcp.pinata.cloud`, operated by Pinata. It sends your requests only there and starts no local process.
+**What the Claude plugin runs and sends.** The plugin has two parts, both from Pinata:
+
+- **The Pinata MCP server**, `https://mcp.pinata.cloud`, a remote server; the plugin starts no local process. Claude sends it the tool calls you ask for (file and folder uploads, names, metadata, group and gateway operations), and it acts on your Pinata account with the key that sign-in created. It reads your account's email address and your files' metadata, and stores what you upload until you delete it.
+- **The `pinata` skill**, instructions only. When you ask Claude to write or run code that uses Pinata, the code it writes calls Pinata's own services with your own API key: the REST API at `api.pinata.cloud` and `uploads.pinata.cloud`, and your gateway at `<your-gateway>.mypinata.cloud`. The skill links to `docs.pinata.cloud` for reference.
+
+Nothing is sent anywhere other than Pinata. Pinata's [privacy policy](https://pinata.cloud/terms#privacy-policy) covers the data.
 
 **Codex** needs a [Pinata API key](https://app.pinata.cloud/developers/api-keys) (JWT). It reads the key from `PINATA_JWT`, which must be exported before Codex starts. Without it the Pinata tools don't load:
 
