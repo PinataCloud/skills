@@ -1,0 +1,19 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "pinata",
+  "description": "Upload, share and manage files on Pinata: the Pinata MCP server plus the pinata skill",
+  "author": {
+    "name": "Pinata",
+    "url": "https://pinata.cloud"
+  },
+  "homepage": "https://docs.pinata.cloud/tools/skills",
+  "repository": "https://github.com/PinataCloud/skills",
+  "license": "MIT",
+  "keywords": [
+    "pinata",
+    "ipfs",
+    "storage",
+    "files",
+    "mcp"
+  ]
+}
