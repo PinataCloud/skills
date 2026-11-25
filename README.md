@@ -24,9 +24,7 @@ Or from inside a session: `/plugin install pinata --marketplace PinataCloud/skil
 
 What the Claude plugin runs: the `pinata` skill (instructions only) and one remote MCP server, `https://mcp.pinata.cloud`, operated by Pinata. It sends your requests only there and starts no local process.
 
-**Codex** and **Gemini CLI** need a [Pinata API key](https://app.pinata.cloud/developers/api-keys) (JWT).
-
-**Codex** reads the key from `PINATA_JWT`, which must be exported before Codex starts. Without it the Pinata tools don't load:
+**Codex** needs a [Pinata API key](https://app.pinata.cloud/developers/api-keys) (JWT). It reads the key from `PINATA_JWT`, which must be exported before Codex starts. Without it the Pinata tools don't load:
 
 ```bash
 codex plugin marketplace add PinataCloud/skills
@@ -36,15 +34,17 @@ export PINATA_JWT=<your JWT>
 
 Update with `codex plugin marketplace upgrade pinata`.
 
-**Gemini CLI** asks for the key on install and keeps it in your system keychain:
+**Gemini CLI** signs in with your Pinata account, like Claude. Install the extension, then run `/mcp auth pinata` in a Gemini CLI session: it opens Pinata's sign-in page in your browser (Gemini CLI receives the callback on `localhost:7777`):
 
 ```bash
 gemini extensions install https://github.com/PinataCloud/skills
 ```
 
-Change it with `gemini extensions config pinata PINATA_JWT`, update with `gemini extensions update pinata`.
+Update with `gemini extensions update pinata`.
 
 Other agents: install the skill with `npx skills add PinataCloud/skills` and add the MCP server by hand, as in the [MCP server docs](https://docs.pinata.cloud/tools/mcp).
+
+Prefer an API key to signing in? The MCP server still accepts a [Pinata API key](https://app.pinata.cloud/developers/api-keys) (JWT) sent as `Authorization: Bearer <JWT>`. Add it yourself instead of the plugin's sign-in, for example in Claude Code: `claude mcp add --transport http pinata https://mcp.pinata.cloud --header "Authorization: Bearer <your JWT>"`. The [MCP server docs](https://docs.pinata.cloud/tools/mcp) show the same for other clients.
 
 ## Skills
 
