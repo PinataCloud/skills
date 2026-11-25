@@ -1,7 +1,8 @@
 {
   "name": "pinata",
   "displayName": "Pinata",
-  "description": "Upload, share and manage files on Pinata from Claude Code: the Pinata MCP server plus the pinata skill",
+  "version": "1.0.0",
+  "description": "Upload, share and manage files on Pinata from Claude: the Pinata MCP server plus the pinata skill",
   "author": {
     "name": "Pinata",
     "url": "https://pinata.cloud"
@@ -19,14 +20,5 @@
     "storage",
     "files",
     "mcp"
-  ],
-  "userConfig": {
-    "pinata_jwt": {
-      "type": "string",
-      "title": "Pinata API key (JWT)",
-      "description": "Create one at https://app.pinata.cloud/developers/api-keys",
-      "sensitive": true,
-      "required": true
-    }
-  }
+  ]
 }

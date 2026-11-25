@@ -2,8 +2,7 @@
   "mcpServers": {
     "pinata": {
       "type": "http",
-      "url": "https://mcp.pinata.cloud",
-      "headers": { "Authorization": "Bearer ${user_config.pinata_jwt}" }
+      "url": "https://mcp.pinata.cloud"
     }
   }
 }
